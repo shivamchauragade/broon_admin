@@ -1,5 +1,3 @@
-                                                                 | -
-
 ## Getting Started
 
 Follow these steps to clone the repository and start the development server:

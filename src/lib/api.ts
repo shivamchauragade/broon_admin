@@ -1,4 +1,9 @@
 import axios from 'axios';
+
+
+const API_BASE_URL = 'https://stagingapi.brooon.com/v1';
+
+
 export async function getUsers(
   page: number,
   pageLimit: number,
@@ -6,7 +11,7 @@ export async function getUsers(
 ) {
   try {
     const res = await axios.get(
-      `https://stagingapi.brooon.com/v1/user/get?page=${page}&limit=${pageLimit}` +
+      `${API_BASE_URL}/user/get?page=${page}&limit=${pageLimit}` +
         (country ? `&search=${country}` : '')
     );
     console.log(res.data.data);
@@ -20,7 +25,7 @@ export async function getUsers(
 export async function updateAssociationVerification(id, isVerified) {
   try {
     const res = await axios.put(
-      `https://stagingapi.brooon.com/v1/association/verify/${id}`,
+      `${API_BASE_URL}/association/verify/${id}`,
       { verified: isVerified }
     );
     console.log(res.data);
@@ -38,7 +43,7 @@ export async function getAssociation(
 ) {
   try {
     const res = await axios.get(
-      `https://stagingapi.brooon.com/v1/association/get?page=${page}&limit=${pageLimit}` +
+      `${API_BASE_URL}/association/get?page=${page}&limit=${pageLimit}` +
         (country ? `&search=${country}` : '')
     );
     console.log(res.data.data);
@@ -55,10 +60,13 @@ export async function addAssociation(data: any) {
   formData.append('code', data.code);
   formData.append('city', data.city);
   formData.append('state', data.state);
-  formData.append('picture', data.image);
+
+  if (data.image) {
+    formData.append('picture', data.image);
+  }
 
   try {
-    const res = await axios.post('https://stagingapi.brooon.com/v1/association/add', formData, {
+    const res = await axios.post(`${API_BASE_URL}/association/add`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -73,7 +81,7 @@ export async function addAssociation(data: any) {
 
 export async function deleteAssociation(id: number) {
   try {
-    const res = await axios.delete(`https://stagingapi.brooon.com/v1/association/delete/${id}`);
+    const res = await axios.delete(`${API_BASE_URL}/association/delete/${id}`);
     console.log(res.data);
     return res.data;
   } catch (error) {
@@ -93,7 +101,7 @@ export async function updateAssociation(id, data: any) {
   }
 
   try {
-    const res = await axios.put(`https://stagingapi.brooon.com/v1/association/update/${id}`, formData, {
+    const res = await axios.put(`${API_BASE_URL}/association/update/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -109,7 +117,7 @@ export async function updateAssociation(id, data: any) {
 
 export async function getAssociationByID(id) {
   try {
-    const res = await axios.get(`https://stagingapi.brooon.com/v1/association/get/${id}`);
+    const res = await axios.get(`${API_BASE_URL}/association/get/${id}`);
     console.log(res.data.data);
     return res.data.data;
   } catch (error) {

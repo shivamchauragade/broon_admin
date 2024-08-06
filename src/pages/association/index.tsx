@@ -1,4 +1,3 @@
-import PageHead from '@/components/shared/page-head';
 import { useGetAssociation } from './queries/queries';
 import AssociationTable from './components/association-table';
 import { useSearchParams } from 'react-router-dom';

@@ -9,8 +9,6 @@ import {
 import {
   Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger
 } from '@/components/ui/tabs.js';
 import RecentSales from './components/recent-sales.js';
 

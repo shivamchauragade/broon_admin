@@ -1,4 +1,3 @@
-import PageHead from '@/components/shared/page-head';
 import { useGetUsers } from './queries/queries';
 import UserTable from './components/users-table';
 import { useSearchParams } from 'react-router-dom';
